@@ -16,7 +16,7 @@ export const storage = {
         window.localStorage.clear();
     },
     getAPI_URL(){
-        return 'https://pensi-admin-produccion.vercel.app/';
+        return 'https://pensi-api-production-production.up.railway.app';
 
     }
     
