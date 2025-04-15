@@ -19,13 +19,13 @@ const Login = () => {
 
     try {
       const response = await sendRequest('POST', { email: email, password: password }, '/api/login/user', '', false);
-      if (response.status) {
-        storage.set('authToken', response.token);
-        storage.set('authUser', response.data);
+      if (response.status===200) {
+        storage.set('authToken', response.data.token);
+        storage.set('authUser', response.data.user);
 
         setSubming(false);
         
-        navigate('/admin-jc/inmuebles');
+        navigate('/admin/inmuebles');
       }
       setSubming(false);
     } catch (err) {

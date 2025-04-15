@@ -22,11 +22,11 @@ function App() {
 
     <Router>
       <Routes>
-        <Route path="admin-jc/login" element={<Login />} />
+        <Route path="admin/login" element={<Login />} />
         <Route element={<ProtectedRoutes />}>
-          <Route path="/admin-jc" element={<Dashboard />}>
+          <Route path="/admin" element={<Dashboard />}>
             <Route path="inmuebles" element={<Inmubles />} />
-            {/*<Route path="admin-jc/profile" element={<Profile />} />*/}
+            {/*<Route path="admin/profile" element={<Profile />} />*/}
             <Route path="novedades" element={<Blog />} />
             <Route path="inmuebles/:id" element={<Detalle />} />
             <Route path="usuarios" element={<User />} />
@@ -37,8 +37,8 @@ function App() {
             <Route path="*" element={<NotFound />} /> {/* Ruta 404 */}
           </Route>
         </Route>
-        <Route path="*" element={<Navigate to="/admin-jc/login" replace />} /> {/* Redirección para rutas desconocidas */}
-        <Route path="/" element={<Navigate to="/admin-jc/login" replace />} /> {/* Redirección para la ruta raíz */}
+        <Route path="*" element={<Navigate to="/admin/login" replace />} /> {/* Redirección para rutas desconocidas */}
+        <Route path="/" element={<Navigate to="/admin/login" replace />} /> {/* Redirección para la ruta raíz */}
        
       </Routes>
     </Router>

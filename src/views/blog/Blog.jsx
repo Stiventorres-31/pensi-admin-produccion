@@ -87,7 +87,7 @@ function Blog() {
                     setSubmitting(false);
                 }
             } catch (error) {
-                console.error('Error al enviar el formulario:', error);
+               
                 setSubmitting(false);
                 showAlert('Ocurrió un error al enviar el formulario.', 'error');
 
@@ -116,7 +116,7 @@ function Blog() {
                     });                  
                    
                 } catch (error) {
-                    console.error('Error al enviar el formulario:', error);
+                  
                     setSubmitting(false);
                     showAlert('Ocurrió un error al actualizar la imagen.', 'error');
 
@@ -223,7 +223,7 @@ function Blog() {
 
     const getNovedades = async () => {
         const response = await sendRequest('GET', {}, '/api/noticias', '', false);
-        setNovedades(response.noticias);
+        setNovedades(response.data.noticias);
         setIsLoading(false);
     }
 

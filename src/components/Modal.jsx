@@ -5,7 +5,7 @@ const Modal = ({ isOpen, onClose, title, children, modal, ancho = 'full max-w-6x
 
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50" id={modal} data-modal-backdrop="static" tabIndex="-1" aria-hidden="true" >
+    <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50 z-50" id={modal} data-modal-backdrop="static" tabIndex="-1"  >
       <div className={`relative p-4 w-${ancho}  max-h-full overflow-y-auto`}>
         <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
           <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
@@ -19,7 +19,7 @@ const Modal = ({ isOpen, onClose, title, children, modal, ancho = 'full max-w-6x
               onClick={onClose}
               
             >
-              <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+              <svg className="w-3 h-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                 <path
                   stroke="currentColor"
                   strokeLinecap="round"
@@ -42,7 +42,7 @@ const Modal = ({ isOpen, onClose, title, children, modal, ancho = 'full max-w-6x
               className="py-2.5 w-full md:w-1/5 px-5 md:ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
               
             >
-              Cancel
+              Cancel  
             </button>
           </div>
         </div>

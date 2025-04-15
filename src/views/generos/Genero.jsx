@@ -125,7 +125,7 @@ const Genero = () => {
 
     const getGeneros = async () => {
         const response = await sendRequest('GET', {}, '/api/generos', '', false);
-        setGeneros(response.generos);
+        setGeneros(response.data.generos);
         setIsLoading(false);
     }
 

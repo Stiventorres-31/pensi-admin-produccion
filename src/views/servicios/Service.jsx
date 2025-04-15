@@ -130,7 +130,7 @@ const Service = () => {
 
     const getServicios = async () => {
         const response = await sendRequest('GET', {}, '/api/servicios', '', false);
-        setServicios(response.servicios);
+        setServicios(response.data.servicios);
         setIsLoading(false);
     }
 

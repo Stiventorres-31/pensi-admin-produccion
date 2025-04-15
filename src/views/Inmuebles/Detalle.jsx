@@ -11,7 +11,7 @@ const Detalle = () => {
 
     //Const form Files
     const [isModalFtOpen, setIsModalFtOpen] = useState(false);
-    const closeModalFt = () => setIsModalFtOpen(false);
+    const closeModalFt = () => {document.activeElement?.blur(); setIsModalFtOpen(false)};
     const [titleFt, setTitlFt] = useState('');
     const [archivos, setArchivos] = useState(null);
     const [destacada, setDestacada] = useState(0);
@@ -65,7 +65,7 @@ const Detalle = () => {
                 showAlert(res.data.message, 'success');
             }
         } catch (error) {
-            console.error('Error al enviar el formulario:', error);
+         
             showAlert('Ocurrió un error al enviar el formulario.', 'error');
         } finally {
             setSubmitting(false);
@@ -84,6 +84,7 @@ const Detalle = () => {
     }
 
     const handleEliminarImagen = (id, name) => {
+        
         confirmation(name, '/api/imagenes/' + id, inmueble.id_inmueble);
 
     }
@@ -96,7 +97,7 @@ const Detalle = () => {
         setModalOpenService(true);
     };
 
-    const closeModalService = () => setModalOpenService(false);
+    const closeModalService = () =>{  document.activeElement?.blur();setModalOpenService(false)};
 
     const handleServiceChange = (event) => {
         const servicioId = parseInt(event.target.value);
@@ -158,7 +159,7 @@ const Detalle = () => {
             getInmuebles();
             showAlert('Servicios actualizados correctamente', 'success');
         } catch (error) {
-            console.error('Error al enviar los servicios:', error);
+           
             showAlert('Error al actualizar los servicios', 'error');
         }
     };
@@ -172,7 +173,7 @@ const Detalle = () => {
         setModalOpenServiceExtra(true);
     };
 
-    const closeModalServiceExtra = () => setModalOpenServiceExtra(false);
+    const closeModalServiceExtra = () => { document.activeElement?.blur();setModalOpenServiceExtra(false);}
     const handleServiceExtraChange = (event) => {
         const servicioExtraId = parseInt(event.target.value);
         if (event.target.checked) {
@@ -224,7 +225,7 @@ const Detalle = () => {
             getInmuebles();
             showAlert('Servicios extras actualizados correctamente', 'success');
         } catch (error) {
-            console.error('Error al enviar los servicios:', error);
+           
             showAlert('Error al actualizar los servicios extras', 'error');
         }
     };
@@ -259,16 +260,16 @@ const Detalle = () => {
 
     const getInmuebles = async () => {
         const response = await sendRequest('GET', {}, '/api/inmuebles/' + id, '', false);
+       
+        setInmueble(response.data.inmueble);
 
-        setInmueble(response.inmueble);
-
-        const imagenes = response.inmueble.fotos || [];
+        const imagenes = response.data.inmueble.fotos || [];
         setImagenes(imagenes);
 
-        const serv = response.inmueble.servicios || [];
+        const serv = response.data.inmueble.servicios || [];
         setServiciosSeleccionados(serv.map(servicio => servicio.id_tipo_servicio));
 
-        const servExtra = response.inmueble.servicios_ex || [];
+        const servExtra = response.data.inmueble.servicios_ex || [];
         setServiciosSeleccionadosExtra(servExtra.map(servicio => servicio.id_servicio_extra));
 
         if (imagenes.length > 0) {
@@ -280,12 +281,12 @@ const Detalle = () => {
 
     const getServicios = async () => {
         const response = await sendRequest('GET', {}, '/api/servicios', '', false);
-        setServicios(response.servicios);
+        setServicios(response.data.servicios);
     }
 
     const getServiciosExtras = async () => {
         const response = await sendRequest('GET', {}, '/api/servicios/extra', '', false);
-        setServiciosExtras(response.servicios_extra);
+        setServiciosExtras(response.data.serviciosExtras);
     }
 
     useEffect(() => {
@@ -326,7 +327,7 @@ const Detalle = () => {
                             </p>
                             {inmueble.precio_descuento > 0 && (
                                 <p className="text-red-600 text-sm font-medium mt-1">
-                                    Ahora: {new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format(inmueble.precio - (inmueble.precio_descuento))}
+                                    Ahora: {new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP' }).format( (inmueble.precio_descuento))}
                                 </p>
                             )}
                         </div>

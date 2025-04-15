@@ -129,7 +129,7 @@ const Service_ex = () => {
 
     const getServiciosEx= async () => {
         const response = await sendRequest('GET', {}, '/api/servicios/extra', '', false);
-        setServiciosEx(response.servicios_extra);
+        setServiciosEx(response.data.serviciosExtras);
         setIsLoading(false);
     }
 

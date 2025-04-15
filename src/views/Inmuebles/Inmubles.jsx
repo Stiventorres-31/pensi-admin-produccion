@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import storage from '../../storage/storage';
 
 const initialFormState = {
-    id: '',
+    id: 0,
     codigo: '',
     nombre: '',
     direccion: '',
@@ -17,7 +17,7 @@ const initialFormState = {
     precio: 0,
     porcentaje_descuento: 0,
     precio_descuento: 0,
-    id_genero: '',//select input con con la const de generos 
+    id_genero: 0,//select input con con la const de generos 
     habitaciones: 0,
     descripcion: '',
     destacado: 0,
@@ -58,11 +58,12 @@ const Inmubles = () => {
 
     const getInmuebles = async () => {
 
-        let url = (storage.get('authUser').admin == 1) ? '/api/inmuebles' : '/api/user/inmuebles';
+        //let url = (storage.get('authUser').admin == 1) ? '/api/inmuebles' : '/api/user/inmuebles';
+        let url ='/api/user/inmuebles';
        
         const response = await sendRequest('GET', {}, url, '', true);
-        console.log(response);
-        setInmuebles(response.inmuebles);
+       
+        setInmuebles(response.data.inmuebles);
         setIsLoading(false);
 
 
@@ -70,7 +71,7 @@ const Inmubles = () => {
 
     const getGeneros = async () => {
         const response = await sendRequest('GET', {}, '/api/generos', '', false);
-        setGeneros(response.generos);
+        setGeneros(response.data.generos);
     }
 
     useEffect(() => {
@@ -114,14 +115,31 @@ const Inmubles = () => {
             options: {
                 filter: false,
                 sort: true,
-                customBodyRender: (value, tableMeta, updateValue) => {
+                customBodyRender: (value, tableMeta) => {
+                    
+                    
+                    const estado = inmuebles[tableMeta.rowIndex].estado
                     const id = tableMeta.rowData[1];
                     const name = tableMeta.rowData[3];
                     return (
                         <>
                             <div className='inline-flex justify-center space-x-4 w-full'>
                                 <button className="block text-white hover:bg-acent focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-[#8EB42D]" onClick={() => openModal(2, id)}><i className="fa-solid fa-file-pen"></i></button>
-                                <button className="block text-white hover:bg-acent focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-[#be0a0a]" onClick={() => deleteInmuebles(id, name)}><i className="fa-solid fa-trash"></i></button>
+
+                                
+                                <button className="block text-white hover:bg-acent focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-yellow-600" onClick={() => deleteInmuebles(id, name)}>
+                                    {estado===1 ? (
+                                         <i className="fa-solid fa-trash"></i>
+                                    ):(
+                                        <i className="fa-solid fa-check"></i>
+                                    )}
+
+                                    
+
+                                   </button>
+
+                                
+                                
                                 <button className="block text-white hover:bg-acent focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-primary" onClick={() => handleVer(id)}><i className="fa-solid fa-eye"></i></button>
                             </div>
 
@@ -172,9 +190,9 @@ const Inmubles = () => {
                     region: inmueble.region,
                     ciudad: inmueble.ciudad,
                     medida: inmueble.medida,
-                    precio: inmueble.precio,
-                    porcentaje_descuento: inmueble.porcentaje_descuento,
-                    precio_descuento: inmueble.precio_descuento,
+                    precio: Number(inmueble.precio),
+                    porcentaje_descuento: Number(inmueble.porcentaje_descuento),
+                    precio_descuento: Number(inmueble.precio_descuento),
                     id_genero: inmueble.id_genero,
                     habitaciones: inmueble.habitaciones,
                     descripcion: inmueble.descripcion,
@@ -202,6 +220,7 @@ const Inmubles = () => {
             url = '/api/inmuebles/' + inmuebleForm.id;
 
         }
+       
         const response = await sendRequest(method, inmuebleForm, url, '', true);
 
         if (response.status == 200 || response.status == 201) {
@@ -218,7 +237,7 @@ const Inmubles = () => {
     }
 
     const handleVer = (id) => {
-        navigate(`/admin-jc/inmuebles/${id}`);
+        navigate(`/admin/inmuebles/${id}`);
     };
 
     return (
@@ -319,7 +338,7 @@ const Inmubles = () => {
                             <label htmlFor="medida" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-acent peer-focus:dark:text-acent peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Medida en m²</label>
                         </div>
                         <div className="relative z-0 w-full mb-5 group">
-                            <input type="number" name="precio" id="precio" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-acent focus:outline-none focus:ring-0 focus:border-acent peer" placeholder=" " value={inmuebleForm.precio} min="0" onChange={handleChange} required />
+                            <input type="text" name="precio" id="precio" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-acent focus:outline-none focus:ring-0 focus:border-acent peer" placeholder=" " value={inmuebleForm.precio} min="0" onChange={handleChange} required />
                             <label htmlFor="precio" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-acent peer-focus:dark:text-acent peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Precio</label>
                         </div>
 
@@ -329,10 +348,10 @@ const Inmubles = () => {
                         </div>
                         <div className="relative z-0 w-full mb-5 group">
                             <input type="number" name="precio_descuento" id="precio_descuento" className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-acent focus:outline-none focus:ring-0 focus:border-acent peer" placeholder=" " value={
+                                inmuebleForm.precio_descuento = (inmuebleForm.porcentaje_descuento>0)?inmuebleForm.precio-(inmuebleForm.precio*inmuebleForm.porcentaje_descuento/100):0
+                               
                                 
-                                (inmuebleForm.porcentaje_descuento === 0 || inmuebleForm.porcentaje_descuento === '') ? 0:inmuebleForm.precio-(inmuebleForm.precio * inmuebleForm.porcentaje_descuento / 100).toFixed(2)
-                                
-                                } onChange={handleChange} required />
+                                } onChange={handleChange} readOnly required />
                             <label htmlFor="precio_descuento" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-acent peer-focus:dark:text-acent peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Precio de Descuento</label>
                         </div>
                         {/* {inmuebleForm.precio_descuento != (inmuebleForm.precio * inmuebleForm.porcentaje_descuento / 100) && (<span className='md:-mt-3 mb-4 md:mb-0 text-sm text-yellow-600'>El precio de descuento es incorrecto según el porcentaje dado: {inmuebleForm.precio-(inmuebleForm.precio * inmuebleForm.porcentaje_descuento / 100).toFixed(2)} </span>)}  */}
@@ -1526,9 +1545,9 @@ const Inmubles = () => {
                             <option value="Villagómez">Villagómez</option>
                             <option value="Villahermosa">Villahermosa</option>
                             <option value="Villamaría">Villamaría</option>
+                            {/* <option value="Villanueva">Villanueva</option>
                             <option value="Villanueva">Villanueva</option>
-                            <option value="Villanueva">Villanueva</option>
-                            <option value="Villanueva">Villanueva</option>
+                            <option value="Villanueva">Villanueva</option> */}
                             <option value="Villanueva">Villanueva</option>
                             <option value="Villapinzón">Villapinzón</option>
                             <option value="Villarrica">Villarrica</option>
