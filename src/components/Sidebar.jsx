@@ -44,30 +44,30 @@ const Sidebar = () => {
             </div>
             <ul className={`flex-1 ${isOpen ? 'block' : 'hidden'} relative  md:block w-full`}>
                 <li className="hover:bg-acent w-full">
-                    <Link className='block p-4' to="/admin-jc/inmuebles" ><i className="fa-solid fa-hotel mr-2"></i> Inmuebles</Link>
+                    <Link className='block p-4' to="/admin/inmuebles" ><i className="fa-solid fa-hotel mr-2"></i> Inmuebles</Link>
                 </li>
                 <li className=" hover:bg-acent w-full">
-                    <Link className='block p-4' to="/admin-jc/generos" ><i className="fa-solid fa-venus-mars mr-2"></i> Generos</Link>
+                    <Link className='block p-4' to="/admin/generos" ><i className="fa-solid fa-venus-mars mr-2"></i> Generos</Link>
                 </li>
                 <li className=" hover:bg-acent w-full">
-                    <Link className='block p-4' to="/admin-jc/servicios" ><i className="fa-solid fa-store mr-2"></i> Servicios</Link>
+                    <Link className='block p-4' to="/admin/servicios" ><i className="fa-solid fa-store mr-2"></i> Servicios</Link>
                 </li>
                 <li className=" hover:bg-acent w-full">
-                    <Link className='block p-4' to="/admin-jc/servicios-extra" ><i className="fa-solid fa-shop mr-2"></i> Servicios Extra</Link>
+                    <Link className='block p-4' to="/admin/servicios-extra" ><i className="fa-solid fa-shop mr-2"></i> Servicios Extra</Link>
                 </li>
                 <li className=" hover:bg-acent w-full">
-                    <Link className='block p-4' to="/admin-jc/novedades" ><i className="fa-solid fa-newspaper mr-2"></i> Novedades & Blog</Link>
+                    <Link className='block p-4' to="/admin/novedades" ><i className="fa-solid fa-newspaper mr-2"></i> Novedades & Blog</Link>
                 </li>
                 <li className=" hover:bg-acent w-full">
-                    <Link className='block p-4' to="/admin-jc/clientes" ><i className="fa-solid fa-user-tie mr-2"></i> Clientes</Link>
+                    <Link className='block p-4' to="/admin/clientes" ><i className="fa-solid fa-user-tie mr-2"></i> Clientes</Link>
                 </li>
                 <li className=" hover:bg-acent w-full">
-                    <Link className='block p-4' to="/admin-jc/usuarios" ><i className="fa-solid fa-user mr-2"></i> Usuarios</Link>
+                    <Link className='block p-4' to="/admin/usuarios" ><i className="fa-solid fa-user mr-2"></i> Usuarios</Link>
                 </li>
 
                 {/**
                  * <li className=" hover:bg-acent w-full">
-                    <Link className='block p-4' to="/admin-jc/profile"><i className="fa-solid fa-address-card mr-2"></i> Profile</Link>
+                    <Link className='block p-4' to="/admin/profile"><i className="fa-solid fa-address-card mr-2"></i> Profile</Link>
                     </li>
                 */}
                 
