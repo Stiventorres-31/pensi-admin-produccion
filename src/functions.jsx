@@ -30,6 +30,7 @@ export const sendRequest = async (method, params, url, redir = '', token = true,
             setTimeout(() =>
                 (redir !== '') ? window.location.href = redir : '', 2000)
         }).catch(err => {
+            console.log(err)
             res = err.response.data,
                 showAlert(res.message, 'error', 4000)
 
