@@ -17,6 +17,7 @@ export const storage = {
     },
     getAPI_URL(){
         return 'https://pensi-api-production-production.up.railway.app';
+        //return 'http://127.0.0.1:8000';
 
     }
     

@@ -19,6 +19,7 @@ const Login = () => {
 
     try {
       const response = await sendRequest('POST', { email: email, password: password }, '/api/login/user', '', false);
+
       if (response.status===200) {
         storage.set('authToken', response.data.token);
         storage.set('authUser', response.data.user);
@@ -29,6 +30,7 @@ const Login = () => {
       }
       setSubming(false);
     } catch (err) {
+     
       showAlert('Error: ' + err.message, 'error');
       setSubming(false);
     }

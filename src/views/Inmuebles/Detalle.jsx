@@ -65,8 +65,8 @@ const Detalle = () => {
                 showAlert(res.data.message, 'success');
             }
         } catch (error) {
-         
-            showAlert('Ocurrió un error al enviar el formulario.', 'error');
+         //console.log(error.response.data.message)
+            showAlert(error.response.data.message, 'error');
         } finally {
             setSubmitting(false);
         }
@@ -159,7 +159,7 @@ const Detalle = () => {
             getInmuebles();
             showAlert('Servicios actualizados correctamente', 'success');
         } catch (error) {
-           
+           console.log(error)
             showAlert('Error al actualizar los servicios', 'error');
         }
     };
