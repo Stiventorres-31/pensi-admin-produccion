@@ -1787,7 +1787,7 @@ const Inmubles = () => {
             <button
               type="submit"
               disabled={submitting}
-              className="py-2.5 px-5 w-full md:w-1/5  text-sm font-medium hover:bg-acent bg-primary text-white focus:outline-none rounded-lg border border-gray-600  focus:z-10 focus:ring-4 focus:ring-gray-700 "
+              className="py-2.5 px-5 w-full md:w-1/5  text-sm font-medium hover:bg-acent bg-primary text-white focus:outline-none rounded-lg border border-gray-600  focus:z-10 focus:ring-4 focus:ring-gray-700"
             >
               Guardar
             </button>

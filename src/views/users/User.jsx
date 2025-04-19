@@ -246,7 +246,7 @@ const User = () => {
 
           </div>
           <div className="relative flex justify-end">
-            <button type="submit" disabled={submitting} className='py-2.5 px-5 w-full md:w-1/5  text-sm font-medium text-white focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-acent focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-acent dark:text-white dark:border-gray-600 dark:hover:text-white dark:hover:bg-primary'>Guardar</button>
+            <button type="submit" disabled={submitting} className='py-2.5 px-5 w-full md:w-1/5  text-sm font-medium hover:bg-acent bg-primary text-white focus:outline-none rounded-lg border border-gray-600  focus:z-10 focus:ring-4 focus:ring-gray-700'>Guardar</button>
           </div>
         </form>
 
