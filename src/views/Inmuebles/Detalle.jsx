@@ -685,7 +685,7 @@ const Detalle = () => {
                 type="checkbox"
                 onChange={handleChangeCheck}
                 name="destacado"
-                className="mr-2"
+                className="mr-2 text-gray-400 dark:text-white"
                 value="1"
                 id="destacado"
                 checked={destacada === 1}
@@ -697,7 +697,7 @@ const Detalle = () => {
             <button
               type="submit"
               disabled={submitting}
-              className="py-2.5 px-5 w-full md:w-1/5  text-sm font-medium hover:bg-acent bg-primary text-white focus:outline-none rounded-lg border border-gray-600  focus:z-10 focus:ring-4 focus:ring-gray-700"
+              className="py-2.5 px-5 w-full md:w-1/5 text-sm font-medium hover:bg-acent bg-primary text-white focus:outline-none rounded-lg border border-gray-600 focus:z-10 focus:ring-4 focus:ring-gray-700"
             >
               Guardar
             </button>
