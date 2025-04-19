@@ -690,7 +690,7 @@ const Detalle = () => {
                 id="destacado"
                 checked={destacada === 1}
               />{" "}
-              Foto destacada
+              <label htmlFor="destacado" className="text-gray-500 dark:text-white">Foto destacada</label>
             </div>
           </div>
           <div className="relative flex justify-end">
