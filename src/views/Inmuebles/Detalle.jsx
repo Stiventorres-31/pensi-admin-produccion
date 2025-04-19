@@ -669,7 +669,7 @@ const Detalle = () => {
             <input
               required
               type="file"
-              className="col-span-2"
+              className="col-span-2 text-gray-500 dark:text-white"
               multiple
               onChange={handleChangeFt}
             />
@@ -677,7 +677,7 @@ const Detalle = () => {
             <input
               disabled
               type="text"
-              className=" text-end bg-transparent"
+              className=" text-end bg-transparent text-gray-500 dark:text-white"
               value={`Inmueble ID: ${inmueble.id_inmueble}`}
             />
             <div className="col-span-2 mb-3">
@@ -685,7 +685,7 @@ const Detalle = () => {
                 type="checkbox"
                 onChange={handleChangeCheck}
                 name="destacado"
-                className="mr-2 text-gray-400 dark:text-white"
+                className="mr-2 text-gray-500 dark:text-white"
                 value="1"
                 id="destacado"
                 checked={destacada === 1}
