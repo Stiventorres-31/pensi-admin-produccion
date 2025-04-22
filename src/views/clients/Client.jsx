@@ -45,7 +45,7 @@ function Client() {
 
     const getClients = async () => {
         const response = await sendRequest('GET', {}, '/api/clients', '', true);
-        setClients(response.clientes);
+        setClients(response.data.clientes);
         setIsLoading(false);
     }
 
