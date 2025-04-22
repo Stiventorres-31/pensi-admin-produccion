@@ -598,7 +598,7 @@ const Detalle = () => {
               />
               <label
                 htmlFor={`servicio-${servicio.id_tipo_servicio}`}
-                className="text-sm text-text"
+                className="text-sm text-gray-500 dark:text-white"
               >
                 {servicio.descripcion}
               </label>
@@ -639,7 +639,7 @@ const Detalle = () => {
               />
               <label
                 htmlFor={`servicio-extra-${servicio.id_servicio_extra}`}
-                className="text-sm text-text"
+                className="text-sm text-gray-500 dark:text-white"
               >
                 {servicio.descripcion}
               </label>
